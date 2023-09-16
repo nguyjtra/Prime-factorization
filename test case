@@ -1,0 +1,99 @@
+[Hàm bổ sung]. Bài 3. Phân tích thừa số nguyên tố
+Problem
+Submissions
+Discussions
+Cho số nguyên dương N, bạn hãy phân tích thừa số nguyên tố theo các cách sau.
+
+Cách 1 : Chỉ in ra các thừa số nguyên tố khác nhau của N mỗi thừa số 1 lần
+
+Cách 2 : In ra các thừa số nguyên tố kèm theo số mũ
+
+Cách 3 : In ra các thừa số nguyên tố
+
+Xem output mẫu để rõ hơn
+
+Mã nguồn tham khảo :
+
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+//n = 28 : 2 2 7
+
+void pt1(int n){
+    for(int i = 2; i <= sqrt(n); i++){
+        //Neu ma n chia het cho i 
+        if(n % i == 0){
+            cout << i << " ";
+            while(n % i == 0){
+                n /= i;
+            }
+        }
+    }
+    if(n > 1){
+        cout << n;
+    }
+}
+
+void pt2(int n){
+    for(int i = 2; i <= sqrt(n); i++){
+        //Neu ma n chia het cho i 
+        if(n % i == 0){
+            // dem so mu cua i
+            int mu = 0;
+            while(n % i == 0){
+                n /= i;
+                ++mu;
+            }
+            cout << "(" << i << ", " << mu << ") ";
+        }
+    }
+    if(n > 1){
+        cout << "(" << n << ", 1)";
+    }
+}
+
+void pt3(int n){
+    for(int i = 2; i <= sqrt(n); i++){
+        //Neu ma n chia het cho i 
+        if(n % i == 0){
+            while(n % i == 0){
+                cout << i;
+                n /= i;
+                if(n > 1){
+                    cout << " x ";
+                }
+            }
+        }
+    }
+    if(n > 1){
+        cout << n << endl;
+    }
+}
+int main(){
+    int n; cin >> n;
+    pt1(n);
+    cout << endl;
+    pt2(n);
+    cout << endl;
+    pt3(n);
+}
+Input Format
+
+Dòng duy nhất chứa số nguyên dương N
+Constraints
+
+2<=N<=10^6
+
+Output Format
+
+In ra 3 dòng theo yêu cầu
+
+Sample Input 0
+
+120
+Sample Output 0
+
+2 3 5
+(2, 3) (3, 1) (5, 1)
+2 x 2 x 2 x 3 x 5
